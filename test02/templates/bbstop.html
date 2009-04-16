@@ -1,0 +1,35 @@
+$def with (title, action, post, bbsname, list, page)
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <title>$title</title>
+  </head>
+
+  <body>
+    <div align="center">
+      <fieldset>
+	<legend>入力しましょう</legend>
+      <form method="POST" action="$action">
+	name: &nbsp;<input type="text" name="username"><br/>
+	message: &nbsp;<input type="text" name="message"><br/>
+	<input type="submit" name="submit" value="post"><br/>
+      </form>
+      </fieldset>
+    </div>
+    <div align="center">
+      <h1>$bbsname</h1>
+      <p style="font-size: small;">全部で&nbsp;$post&nbsp;の投稿があります。</p>
+      <!-- ページャ -->
+      $for i in range(page, post+page, page):
+          <a href="/?page=${i/page}">${i/page}</a>&nbsp;
+      $if list:
+          $for item in list:
+              <p>$item[0]&nbsp;&nbsp;$item[1]&nbsp;&nbsp;$item[2]</p>
+              <hr>
+      $else:
+          <p>一件も投稿はありません。</p>
+    </div>
+  </doby>
+</html>

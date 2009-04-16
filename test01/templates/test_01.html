@@ -1,0 +1,17 @@
+$def with (name, wlist)
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    $for i in range(10):
+        <h1>Title</h1>
+    <h2>$name</h2>
+    $if wlist:
+        $for x in wlist:
+            <h3>$x</h3>
+  </body>
+</html>
