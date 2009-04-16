@@ -1,0 +1,42 @@
+$def with (title, threadrecord, action)
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>$title</title>
+  </head>
+  <body>
+    <div align="center">
+      <h1>$title</h1>
+    </div>
+    <div align="center">
+      $if len(threadrecord) > 0:
+          <table>
+            <tr>
+              <th>Link</th>
+              <th>スレッド名</th>
+              <th>作成日</th>
+            </tr>
+          $for item in threadrecord:
+            <tr>
+              <td><a href="/res?no=$item[0]">■</a></td>
+              <td>$item[1]</td>
+              <td>$item[2]</td>
+            </tr>
+          </table>
+      $else:
+          まったくレコードありません。
+    </div>
+    <!-- form -->
+    <div align="center">
+      <fieldset>
+      <legend>スレッドを作成する。</legend>
+      <form method="POST" action="$action">
+        スレッド名称:&nbsp;<input type="text" name="threadtitle"><br/>
+        ユーザ名:&nbsp;<input type="text" name="username"><br/>
+        テキスト<textarea cols="30" rows="5" name="message"></textarea><br/>
+        <input type="submit" name="submit" value="スレッド作成">
+      </form>
+      </fieldset>
+    </div>
+  </body>
+</html>

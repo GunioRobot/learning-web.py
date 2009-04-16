@@ -1,0 +1,16 @@
+$def with (resrecord)
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>レステスト</title>
+  </head>
+  <body>
+    <div align="center">
+      $if len(resrecord) > 0:
+          $for item in resrecord:
+              $item
+      $else:
+          レスデータは一件もないです。
+    </div>
+  </body>
+</html>
