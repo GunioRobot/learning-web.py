@@ -26,7 +26,8 @@ CREATE TABLE `res`(
   `id` INTEGER NOT NULL PRIMARY KEY,
   `thread_id` INTEGER NOT NULL,
   `name` TEXT NOT NULL,
-  `message` TEXT NOT NULL
+  `message` TEXT NOT NULL,
+  `create_time` TEXT NOT NULL
 )
 '''
 
