@@ -3,6 +3,17 @@ $def with (title, threadrecord, action)
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>$title</title>
+    <style>
+    <!--
+        .table{
+            border-collapse: collapse;
+        }
+        .border1px{
+            border-style: solid;
+            border-width: 1px;
+        }
+    -->
+    </style>
   </head>
   <body>
     <div align="center">
@@ -10,17 +21,17 @@ $def with (title, threadrecord, action)
     </div>
     <div align="center">
       $if len(threadrecord) > 0:
-          <table>
+          <table class="table border1px">
             <tr>
-              <th>Link</th>
-              <th>スレッド名</th>
-              <th>作成日</th>
+              <th class="border1px">Link</th>
+              <th class="border1px">スレッド名</th>
+              <th class="border1px">作成日</th>
             </tr>
           $for item in threadrecord:
             <tr>
-              <td><a href="/res?no=$item[0]">■</a></td>
-              <td>$item[1]</td>
-              <td>$item[2]</td>
+              <td class="border1px" align="center"><a href="/res?no=$item[0]">■</a></td>
+              <td class="border1px">$item[1]</td>
+              <td class="border1px">$item[2]</td>
             </tr>
           </table>
       $else:

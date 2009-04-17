@@ -14,7 +14,8 @@ class res(object):
             db = dbControl()
             resrecord = db.catchResAllRecord(usGet.get(u'no'))
             render = web.template.render('../templates')
-            return render.res(resrecord)
+            web.header(u'Content-Type', u'text/html')
+            return render.res(resrecord, u'/res')
         else:
             web.seeother(u'/')
     def POST(self):

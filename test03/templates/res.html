@@ -1,4 +1,4 @@
-$def with (resrecord)
+$def with (resrecord, action)
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,11 +6,28 @@ $def with (resrecord)
   </head>
   <body>
     <div align="center">
+      <a href="/">スレッド一覧へ</a>
+    </div>
+    <hr>
+    <div align="center">
       $if len(resrecord) > 0:
+          <div align="center">
           $for item in resrecord:
-              $item
+              <p>No. $item[0]&nbsp;&nbsp;&nbsp;名前: $item[2]&nbsp;&nbsp;時間: $item[4]</p>
+              <pre>$item[3]</pre>
+          </div>
       $else:
           レスデータは一件もないです。
+    </div>
+    <div align="center"> 
+      <fieldset>
+        <legend>レスを付ける</legend>
+        <form method="POST" action="$action">
+          名前:&nbsp;<input type="text" name="username"><br/>
+          テキスト:&nbsp;<textarea cols="30" rows="5"></textarea><br/>
+          <input type="submit" name="submit" value="投稿する">
+        </form>
+      </fieldset>
     </div>
   </body>
 </html>

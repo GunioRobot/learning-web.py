@@ -6,6 +6,6 @@ import sqlite3
 
 class thread(object):
     def GET(self):
-        pass
+        web.seeother(u'/')
     def POST(self):
         pass

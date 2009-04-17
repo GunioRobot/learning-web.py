@@ -3,7 +3,7 @@
 
 import sqlite3
 
-DATABASE = u'datastore/bbs.db'
+DATABASE = u'../datastore/bbs.db'
 
 class dbControl(object):
     def __init__(self, database=DATABASE):
@@ -41,16 +41,29 @@ class dbControl(object):
                 '''
         param = {u'limit':limit, u'count':count}
 
-    def catchResAllRecord(self):
+    def catchResAllRecord(self, thread_id):
         u'''
         res テーブルの全てのレコードを返す
         '''
         query = u'''
-                SELECT * FROM res
+                SELECT * FROM res WHERE thread_id = :thread_id
                 '''
-        result = self.fetchAll(query)
+        param = {u'thread_id': thread_id}
+        result = self.fetchAll(query, param)
         return result
 
-    def catchResRecord(self, limit, count):
-        
+    def catchResRecord(self, thread_id, limit, count):
+        u'''
+        res テーブルの一部のレコードを返す
+        '''
+
+        query = u'''
+                SELECT * FROM res WHERE thread_id = :thread_id
+                         LIMIT :limit,:count
+                '''
+        param = {u'thread_id': thread_id,
+                 u'limit': limit,
+                 u'count': count}
+        result = self.fetchAll(query, param)
+        return result
      

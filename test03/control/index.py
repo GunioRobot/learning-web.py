@@ -11,6 +11,6 @@ class index(object):
         threadrecord = db.catchThreadAllRecord()
         web.header(u'Content-Type', u'text/html')
         render = web.template.render(u'../templates')
-        return render.index(u'BBSテスト', threadrecord)
+        return render.index(u'BBSテスト', threadrecord, u'thread')
     def POST(self):
         web.seeother(u'/')

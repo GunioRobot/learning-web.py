@@ -5,6 +5,9 @@ import web
 import os
 import sys
 
+if not u'../' in sys.path:
+    sys.path.append(u'../')
+
 from control import thread, index, res
 
 urls = (
