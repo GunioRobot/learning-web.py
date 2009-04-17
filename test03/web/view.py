@@ -8,13 +8,14 @@ import sys
 if not u'../' in sys.path:
     sys.path.append(u'../')
 
-from control import thread, index, res
+from control import *
 
 urls = (
-    u'/', u'index',
-    u'/thread', u'thread',
-    u'/res', u'res',
-    u'/(.*)', u'index',
+    u'/', u'index',          # スレッド一覧表示
+    u'/thread', u'mythread', # スレッド作成
+    u'/res', u'res',         # レス作成、表示
+    u'/error', u'error',     # エラー表示
+    u'/(.*)', u'index',      # 条件に合わないものはスレッド一覧表示
     )
 
 def main():

@@ -3,5 +3,7 @@ include control
 '''
 
 from index import index
+from error import error
 from res import res
-from thread import thread
+from mythread import mythread
+

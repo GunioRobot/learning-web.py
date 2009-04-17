@@ -15,8 +15,25 @@ class res(object):
             resrecord = db.catchResAllRecord(usGet.get(u'no'))
             render = web.template.render('../templates')
             web.header(u'Content-Type', u'text/html')
-            return render.res(resrecord, u'/res')
+            return render.res(resrecord, u'/res?no={0}'.format(usGet.get(u'no')))
         else:
             web.seeother(u'/')
     def POST(self):
-        pass
+        usGet = web.webapi.input()
+        if (usGet.get(u'username') and
+            usGet.get(u'message')):
+            db = dbControl()
+            # レスデータをレコードに書き込む
+            post = {u'thread_id': usGet.get(u'no'),
+                    u'username' : usGet.get(u'username'),
+                    u'message' : usGet.get(u'message')}
+            result = db.newCreateRes(post)
+            if not result:
+                db.rollback()
+                db.close()
+                web.seeother(u'/error')
+            else:
+                db.commit()
+                web.seeother(u'/res?no={0}'.format(usGet.get(u'no')))
+        else:
+            web.seeother(u'/')
