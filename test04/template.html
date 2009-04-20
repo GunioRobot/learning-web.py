@@ -1,0 +1,18 @@
+$def with (action, session)
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Test Title</title>
+  </head>
+
+  <body>
+    <h1>Test Session</h1>
+    $if session:
+      <h2>$session</h2>
+    $else:
+      <h2>セションありませんよ。</h2>
+    <form method="POST" action="$action">
+      <input type="submit" name="submit" value="submit">
+    </form>
+  </body>
+</html>
