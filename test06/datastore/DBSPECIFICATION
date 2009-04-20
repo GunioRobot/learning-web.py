@@ -30,3 +30,4 @@ id          INTEGER NOT NULL PRIMARY KEY
 res_id      INTEGER NOT NULL
 ipaddr      TEXT NOT NULL
 host        TEXT NOT NULL
+
