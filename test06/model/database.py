@@ -21,8 +21,8 @@ class database(object):
         u'''
         コンストラクタ
         '''
-        print dbname
-        if not os.path.exists(dbname):
+        if (not os.path.exists(dbname) and 
+            isinstance(dbname, file)):
             raise self.DataBaseError, dbname
 
         self.dbname = dbname
@@ -34,7 +34,8 @@ class database(object):
         コネクトする
         '''
         try:
-            if not os.path.exists(self.dbname):
+            if (not os.path.exists(self.dbname) and
+                isinstance(self.dbname, file)):
                 return False
             if isinstance(self.con, sqlite3.Conenct):
                 return False
@@ -86,6 +87,13 @@ class database(object):
         return self.cur.fetchall()
 
     def fetchOne(self, query, param=None):
-        self.__execute(query,param)
+        self.__execute(query, param)
         return self.cur.fetchone()
+ 
+    def sendQuery(self, query, param=None):
+        self.__execute(query, param)
+        return True
 
+    def executeScript(self, query):
+        self.cur.executescript(query)
+        return True
