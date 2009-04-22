@@ -14,7 +14,7 @@ CREATE_TABLE = \
 u'''
 CREATE TABLE category(
   id INTEGER NOT NULL PRIMARY KEY,
-  namge TEXT NOT NULL
+  name TEXT NOT NULL
 );
 
 CREATE TABLE bbs (
