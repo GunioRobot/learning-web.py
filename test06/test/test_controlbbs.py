@@ -43,9 +43,6 @@ class TestControlBbs(unittest.TestCase):
         self.condb.db.executeScript(query)
     
     def test_takeBbsList(self):
-        u'''
-        takeBbsListのテスト
-        '''
         db = self.condb.takeBbsList()
         self.assertEqual(1, db[0][1]) # category_idの確認
         self.assertEqual(u'testbbs_1', db[0][2]) # bbs名の確認
