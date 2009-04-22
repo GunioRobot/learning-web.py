@@ -8,8 +8,13 @@ from model import bbsdb
 from config import conf
 
 class controlbbs(object):
+<<<<<<< HEAD:test06/control/controlbbs.py
+    def __init__(self, dbname=conf.DATABASE_PATH):
+        self.db = bbsdb.bbsdatabase(dbname)
+=======
     def __init__(self, dbpath=conf.DATABASE_PATH):
         self.db = bbsdb.bbsdatabase(dbpath)
+>>>>>>> d2080953e3c7b2cedc126a2fa423ca9c3be836e4:test06/control/controlbbs.py
         
     def takeBbsList(self):
         u'''

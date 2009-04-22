@@ -3,6 +3,13 @@
 
 import web
 
+import os
+import sys
+if not os.path.join(os.curdir, os.path.abspath(u'..')) in sys.path:
+    sys.path.append(os.path.join(os.curdir, os.path.abspath(u'..')))
+
+from view.bbs import bbs
+
 urls = (
     u'/', u'bbs',
     u'/thread', u'thread',
