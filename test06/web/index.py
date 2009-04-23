@@ -8,10 +8,12 @@ import sys
 if not os.path.join(os.curdir, os.path.abspath(u'..')) in sys.path:
     sys.path.append(os.path.join(os.curdir, os.path.abspath(u'..')))
 
+from view.bbsindex import bbsindex
 from view.bbs import bbs
 
 urls = (
-    u'/', u'bbs',
+    u'/', u'bbsindex',
+    u'/bbs', u'bbs',
     u'/thread', u'thread',
     u'/res', u'res',
     u'/rss', u'rss',

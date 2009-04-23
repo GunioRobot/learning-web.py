@@ -8,6 +8,7 @@ class bbsdatabase(database.database):
     def takeRecordAll(self):
         query = u'''
                 SELECT * FROM bbs
+                  ORDER BY create_time DESC
                 '''
         result = self.fetchAll(query)
         return result
@@ -16,6 +17,7 @@ class bbsdatabase(database.database):
         query = u'''
                 SELECT * FROM bbs
                   WHERE id = :bbs_id
+                  ORDER BY create_time DESC
                 '''
         param = {u'bbs_id' : bbs_id}
         result = self.fetchAll(query, param)
@@ -25,6 +27,7 @@ class bbsdatabase(database.database):
         query = u'''
                 SELECT * FROM bbs
                   WHERE category_id = :category_id
+                  ORDER BY create_time DESC
                 '''
         param = {u'category_id' : category_id}
         result = self.fetchAll(query, param)

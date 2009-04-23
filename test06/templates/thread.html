@@ -1,0 +1,37 @@
+$def with (threadlist)
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>スレッド一覧</title>
+  </head>
+  <body>
+    <div align="center">
+      <h1>スレッド一覧</h1>
+    </div>
+    <div align="center">
+    $if threadlist:
+      <table>
+        <tr>
+          <th>No.
+          </th>
+          <th>スレッド名
+          </th>
+          <th>作成日時
+          </th>
+        </tr>
+        $for idx, item in enumerate(threadlist):
+          <tr>
+            <td>${idx + 1}
+            </td>
+            <td>$item[2]
+            </td>
+            <td>$item[3]
+            </td>
+          </tr>
+      </table>
+    $else:
+      <p>スレッドはありません。</p>
+   
+    </div>
+  </body>
+</html>

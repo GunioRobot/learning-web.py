@@ -66,7 +66,11 @@ class database(object):
         u'''
         接続を閉じる
         '''
-        self.con.close()
+        try:
+            self.con.close()
+            return True
+        except ProgrammingError, e:
+            return False
 
     def commit(self):
         self.con.commit()
@@ -75,6 +79,12 @@ class database(object):
         self.con.rollback()
 
     def __execute(self, query, param=None):
+        u'''
+        渡されたクエリ、パラメータについて受け取り、
+        カーソルオブジェクトに渡して実行する
+        query string
+        param dict
+        '''
         if self.__class__ == database:
             raise NotImplementedError
         if not param:
@@ -83,17 +93,34 @@ class database(object):
             self.cur.execute(query, param)
 
     def fetchAll(self, query, param=None):
+        u'''
+        execute後、カーソルのfetchallメソッドを呼び、
+        クエリの条件にあうレコードすべて取り出す
+        '''
         self.__execute(query, param)
         return self.cur.fetchall()
 
     def fetchOne(self, query, param=None):
+        u'''
+        execute後、カーソルのfetchoneメソッドを呼び、
+        クエリの条件にあうレコードの一行目のものについて
+        取り出す
+        '''
         self.__execute(query, param)
         return self.cur.fetchone()
  
     def sendQuery(self, query, param=None):
+        u'''
+        execute後、ただTrueを返す。
+        INSERT, UPDATE実行用メソッド
+        '''
         self.__execute(query, param)
         return True
 
     def executeScript(self, query):
+        u'''
+        executescriptメソッドを利用。
+        複数行にわたるクエリを実行するのに利用する
+        '''
         self.cur.executescript(query)
         return True

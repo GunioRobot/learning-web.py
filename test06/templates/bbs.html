@@ -1,0 +1,52 @@
+$def with (bbslist)
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div align="center">
+      <h1>BBS 一覧</h1>
+    </div>
+    $if bbslist:
+      <div align="center">
+      <table>
+        <tr>
+          <th>
+          No.
+          </th>
+          <th>
+          BBS名
+          </th>
+          <th>
+          作成日
+          </th>
+          <th>
+          リンク
+          </th>
+        </tr>
+      $for idx, item in enumerate(bbslist):
+        <tr>
+          <td align="center">
+          ${idx+1}
+          </td>
+          <td align="center">
+          $item[2]
+          </td>
+          <td align="center">
+          $item[3]
+          </td>
+          <th>
+            <a href="/bbs?no=${idx+1}">BBSへ</a>
+          </th>
+        </tr>
+      </table>
+      </div>
+    $else:
+      <div align="center">
+        <h2>BBSはひとつもありません</h2>
+      </div>
+  </body>
+</html>

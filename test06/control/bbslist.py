@@ -7,14 +7,9 @@ import sys
 from model import bbsdb
 from config import conf
 
-class controlbbs(object):
-<<<<<<< HEAD:test06/control/controlbbs.py
+class bbslist(object):
     def __init__(self, dbname=conf.DATABASE_PATH):
         self.db = bbsdb.bbsdatabase(dbname)
-=======
-    def __init__(self, dbpath=conf.DATABASE_PATH):
-        self.db = bbsdb.bbsdatabase(dbpath)
->>>>>>> d2080953e3c7b2cedc126a2fa423ca9c3be836e4:test06/control/controlbbs.py
         
     def takeBbsList(self):
         u'''
@@ -36,3 +31,9 @@ class controlbbs(object):
         '''
         result = self.db.categoryIdToTakeRecord(category_id)
         return result
+
+    def closeConnect(self):
+        u'''
+        コネクションを切る
+        '''
+        self.db.closeConnect()
