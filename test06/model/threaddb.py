@@ -30,6 +30,9 @@ class threaddatabase(database.database):
         return result
     
     def bbsIdToTakeRecord(self, bbs_id):
+        u'''
+        bbsidを元に、レコードを取得
+        '''
         query = u''' 
                 SELECT * FROM thread
                   WHERE bbs_id = :bbs_id

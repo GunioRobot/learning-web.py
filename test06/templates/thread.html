@@ -18,6 +18,8 @@ $def with (threadlist)
           </th>
           <th>作成日時
           </th>
+          <th>リンク
+          </th>
         </tr>
         $for idx, item in enumerate(threadlist):
           <tr>
@@ -26,6 +28,8 @@ $def with (threadlist)
             <td>$item[2]
             </td>
             <td>$item[3]
+            </td>
+            <td><a href="/thread?no=${idx+1}">スレッドへ</a>
             </td>
           </tr>
       </table>
