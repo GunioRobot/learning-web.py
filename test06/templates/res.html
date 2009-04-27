@@ -1,49 +1,46 @@
-$def with (threadlist, action)
+$def with (reslist)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>スレッド一覧</title>
+    <title>テストですね</title>
   </head>
   <body>
+    <h1>Test</h1>
     <div align="center">
-      <h1>スレッド一覧</h1>
-    </div>
-    <div align="center">
-    $if threadlist:
+    $if reslist:
       <table>
         <tr>
           <th>No.
           </th>
-          <th>スレッド名
+          <th>ユーザ名
           </th>
-          <th>作成日時
+          <th>メッセージ
           </th>
-          <th>リンク
+          <th>レス時刻
           </th>
         </tr>
-        $for idx, item in enumerate(threadlist):
-          <tr>
-            <td>${idx + 1}
-            </td>
-            <td>$item[2]
-            </td>
-            <td>$item[3]
-            </td>
-            <td><a href="/thread?no=${idx+1}">スレッドへ</a>
-            </td>
-          </tr>
+      $for idx, item in enumerate(reslist):
+        <tr>
+          <td>${idx + 1}
+          </td>
+          <td>$item[2]
+          </td>
+          <td>$item[3]
+          </td>
+          <td>$item[4]
+          </td>
+        </tr>
       </table>
     $else:
-      <p>スレッドはありません。</p>
+      <p>リストもらってない</p>
     </div>
     <div align="center">
       <fieldset>
-        <legend>スレッドを作成する</legend>
+        <legend>レスをつける</legend>
         <form method="POST" action="$action">
-          <p><input type="text" id="threadtitle" name="threadtitle" value=""/></p>
           <p><input type="text" name="username" value="" /></p>
           <p><input type="text" name="message" value="" /></p>
           <p><input type="submit" name="submit" value="send" /></p>

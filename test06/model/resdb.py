@@ -25,7 +25,7 @@ class resdatabase(database.database):
                   ORDER BY update_time DESC
                 '''
         param = {u'thread_id' : thread_id}
-        result = self.db.findAll(query, param)
+        result = self.fetchAll(query, param)
         return result
 
     def threadIdAndLimitToTakeRecord(self, thread_id,
@@ -42,6 +42,6 @@ class resdatabase(database.database):
         param = {u'thread_id' : thread_id,
                  u'start' : start,
                  u'length' : length}
-        result = self.db.findAll(query, param)
+        result = self.fetchAll(query, param)
         return result
 

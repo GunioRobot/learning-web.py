@@ -1,6 +1,8 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+# webアクセスで叩かれる場所
+
 import web
 
 import os
@@ -17,7 +19,8 @@ urls = (
     u'/bbs', u'bbs',
     u'/thread', u'threadres',
     u'/res', u'res',
-    u'/rss', u'rss',
+    #u'/rss', u'rss',
+    u'/.*', u'bbsindex',
     )
 
 def main():
