@@ -10,11 +10,12 @@ if not os.path.join(os.curdir, os.path.abspath(u'..')) in sys.path:
 
 from view.bbsindex import bbsindex
 from view.bbs import bbs
+from view.threadres import threadres
 
 urls = (
     u'/', u'bbsindex',
     u'/bbs', u'bbs',
-    u'/thread', u'thread',
+    u'/thread', u'threadres',
     u'/res', u'res',
     u'/rss', u'rss',
     )

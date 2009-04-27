@@ -27,3 +27,21 @@ class resdatabase(database.database):
         param = {u'thread_id' : thread_id}
         result = self.db.findAll(query, param)
         return result
+
+    def threadIdAndLimitToTakeRecord(self, thread_id,
+                                     start, length):
+        u'''
+        スレッドID, LIMITを指定する
+        '''
+        query = u'''
+                SELECT * FROM res
+                  WHERE thread_id = :thread_id
+                  ORDER BY update_time DESC
+                  LIMIT start, length
+                '''
+        param = {u'thread_id' : thread_id,
+                 u'start' : start,
+                 u'length' : length}
+        result = self.db.findAll(query, param)
+        return result
+

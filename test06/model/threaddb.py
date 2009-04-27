@@ -41,3 +41,4 @@ class threaddatabase(database.database):
         result = self.fetchAll(query, param)
         return result
     
+   
