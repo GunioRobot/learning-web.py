@@ -1,16 +1,22 @@
 # -*- coding: utf-8 -*-
 
+u'''
+DBを実際にいじくる、
+そのためのクラスで本家みたいなもん。
+'''
+
 import sqlite3
 import os
 import time
 
-__version__ = u'200904211236'
+__version__ = u'200904282208'
 
 class database(object):
     u'''
     con コネクト
     cur カーソルオブジェクトを格納するディクショナリ
     '''
+    
     class DataBaseError(BaseException):
         u'''
         DataBaseError
@@ -27,7 +33,22 @@ class database(object):
 
         self.dbname = dbname
         self.openConnect()
+        self.makeOriginalDefinition() # NOWとか追加
         self.openCursor()
+        
+    def makeOriginalDefinition(self):
+        u'''
+        sqlite3では無いような関数を定義する
+        意欲的なメソッド
+        '''
+        import originaldefinition
+
+        if isinstance(self.con, sqlite3.Connection):
+            for item in originaldefinition.funclist:
+                self.con.create_function(*item)
+        else:
+            return False
+        
 
     def openConnect(self):
         u'''
@@ -71,11 +92,24 @@ class database(object):
             return True
         except ProgrammingError, e:
             return False
+            
+    def getLastRowId(self):
+        u'''
+        最後にINSERTで挿入した
+        レコードの行番号を得て返す
+        '''
+        return self.cur.lastrowid
 
     def commit(self):
+        u'''
+        コミット
+        '''
         self.con.commit()
     
     def rollback(self):
+        u'''
+        ロールバック
+        '''
         self.con.rollback()
 
     def __execute(self, query, param=None):

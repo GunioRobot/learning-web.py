@@ -19,7 +19,9 @@ class bbs(object):
             re.match(ur'^[0-9]{1,10}$', data.get(u'no'))):
             db = threadlist()
             tlist = db.takebbsIdToTakeRecord(data.get(u'no'))
-            return self.render.thread(tlist)
+            web.header(u'Content-Type', u'text/html; charset=UTF-8')
+            return self.render.thread(tlist,
+                            u'makethread?no={0}'.format(data.get(u'no')))
         else:
             web.seeother(u'/')
             return

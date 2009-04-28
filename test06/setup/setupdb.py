@@ -1,6 +1,10 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+u'''
+DB作成用スクリプト
+'''
+
 import sqlite3
 import os
 import sys
@@ -45,13 +49,12 @@ CREATE INDEX idx_thread_bbs_id ON thread(bbs_id);
 CREATE INDEX idx_res_thread_id ON res(thread_id);
 '''
 
-
-
 def setupDb():
     u'''
     DBファイルの作成
     '''
     if os.path.exists(os.path.join(DATASTORE_DIR, DATABASE_NAME)):
+        # 既にDBが存在する場合、削除を行う
         while True:
             print(u'Deleted DATABASE? y/n')
             ch = raw_input()

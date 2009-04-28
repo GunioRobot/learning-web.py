@@ -14,6 +14,7 @@ class bbsindex(object):
         '''
         conbbs = bbslist()
         blist = conbbs.takeBbsList()
+        web.header(u'Content-Type', u'text/html; charset=UTF-8')
         return self.render.bbs(blist)
         
     def POST(self):

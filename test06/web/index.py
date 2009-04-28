@@ -10,17 +10,20 @@ import sys
 if not os.path.join(os.curdir, os.path.abspath(u'..')) in sys.path:
     sys.path.append(os.path.join(os.curdir, os.path.abspath(u'..')))
 
-from view.bbsindex import bbsindex
+# 各モジュールインポート
 from view.bbs import bbs
+from view.bbsindex import bbsindex
 from view.threadres import threadres
+from view.makethread import makethread
 
 urls = (
-    u'/', u'bbsindex',
-    u'/bbs', u'bbs',
-    u'/thread', u'threadres',
-    u'/res', u'res',
+    u'/', u'bbsindex',            # BBS一覧
+    u'/bbs', u'bbs',              # 特定BBS指定
+    u'/thread', u'threadres',     # 特定スレ指定
+    u'/res', u'res',              # レス関係
     #u'/rss', u'rss',
-    u'/.*', u'bbsindex',
+    u'/makethread', u'makethread',# スレッド作成
+    u'/.*', u'bbsindex',          # マッチしなかったものはBBS一覧へ
     )
 
 def main():

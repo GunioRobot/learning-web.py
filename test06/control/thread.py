@@ -38,7 +38,7 @@ class thread(object):
         result = self.db.threadIdAndLimitToTakeRecord(thread_id,
                                                       start, length)
         return result
-
+        
     def closeConnect(self):
         u'''
         コネクションを切る

@@ -18,6 +18,7 @@ class threadres(object):
         u'''
         GET
         '''
+        web.header(u'Content-Type', u'text/html; charset=UTF-8')
         self.setWebInput()
         self.setThreadId(self.mixed.get(u'no'))
         if self.getNo():

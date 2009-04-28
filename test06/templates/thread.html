@@ -39,14 +39,21 @@ $def with (threadlist, action)
     $else:
       <p>スレッドはありません。</p>
     </div>
+    <hr>
     <div align="center">
-      <fieldset>
+      <fieldset style="width :320px;">
         <legend>スレッドを作成する</legend>
         <form method="POST" action="$action">
-          <p><input type="text" id="threadtitle" name="threadtitle" value=""/></p>
-          <p><input type="text" name="username" value="" /></p>
-          <p><input type="text" name="message" value="" /></p>
-          <p><input type="submit" name="submit" value="send" /></p>
+          <p><b>スレッドタイトル</b>&nbsp;
+             <input type="text" id="threadname" name="threadname" value="" size="30"/>
+          </p>
+          <p><b>ユーザ名</b>&nbsp;
+             <input type="text" name="username" value="" size="30" />
+          </p>
+          <p><b>メッセージ</b>&nbsp;
+             <textarea id="message" name="message" cols="30" rows="5"></textarea>
+          </p>
+          <p><input type="submit" name="submit" value="作成する" /></p>
         </form>
       </fieldset>
     </div>
