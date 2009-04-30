@@ -62,6 +62,24 @@ INSERT INTO res
 INSERT INTO res
   (thread_id, user_name, message, create_time, update_time)
   VALUES
+  (1, 'ほげほげ', 'ほげほげテスト',
+   '2009-04-10 00:00:00', '2009-04-12 00:10:00');
+   
+INSERT INTO res
+  (thread_id, user_name, message, create_time, update_time)
+  VALUES
+  (1, 'うげげ', '変態メッセージテスト',
+   '2009-04-12 10:00:00', '2009-04-12 10:00:00');
+
+INSERT INTO res
+  (thread_id, user_name, message, create_time, update_time)
+  VALUES
+  (1, 'どどどど', 'メッセージテスト',
+   '2009-04-13 00:00:00', '2009-04-14 00:00:00');
+
+INSERT INTO res
+  (thread_id, user_name, message, create_time, update_time)
+  VALUES
   (2, 'テストテスト', 'テストですね\nよかったです',
    '2009-06-01 00:00:00', '2009-06-02 00:00:00');
 
@@ -73,6 +91,9 @@ INSERT INTO res
 '''
 
 def createTestDataBase():
+    u'''
+    テストDBを作成する
+    '''
     if os.path.exists(TEST_DBNAME):
         os.unlink(TEST_DBNAME)
     db = sqlite3.connect(TEST_DBNAME)

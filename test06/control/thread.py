@@ -6,7 +6,7 @@ import web
 import os
 import sys
 
-from model import resdb
+from model import threadandres
 from config import conf
 
 class thread(object):
@@ -14,7 +14,7 @@ class thread(object):
     スレッド本体に関する処理
     '''
     def __init__(self, dbname=conf.DATABASE_PATH):
-        self.db = resdb.resdatabase(dbname)
+        self.db = threadandres.threadandres(dbname)
 
     def takeRecordAll(self):
         u'''
@@ -38,6 +38,13 @@ class thread(object):
         result = self.db.threadIdAndLimitToTakeRecord(thread_id,
                                                       start, length)
         return result
+    
+    def getThreadName(self, thread_id):
+        u'''
+        スレッドの名称をスレッドIDより得る
+        '''
+        result = self.db.getThreadName(thread_id)
+        return result[0]
         
     def closeConnect(self):
         u'''

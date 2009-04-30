@@ -5,7 +5,13 @@ __version__ = u'200904211354'
 import database
 
 class bbsdatabase(database.database):
+    u'''
+    bbsテーブルにかかわるクラス
+    '''
     def takeRecordAll(self):
+        u'''
+        bbsテーブルすべてのレコードを抜き出す
+        '''
         query = u'''
                 SELECT * FROM bbs
                   ORDER BY create_time DESC
@@ -14,6 +20,9 @@ class bbsdatabase(database.database):
         return result
 
     def bbsIdToTakeRecord(self, bbs_id):
+        u'''
+        主キーを元にレコードを抜き出す
+        '''
         query = u'''
                 SELECT * FROM bbs
                   WHERE id = :bbs_id
@@ -24,6 +33,9 @@ class bbsdatabase(database.database):
         return result
 
     def categoryIdToTakeRecord(self, category_id):
+        u'''
+        カテゴリーを元にレコードを抜き出す
+        '''
         query = u'''
                 SELECT * FROM bbs
                   WHERE category_id = :category_id

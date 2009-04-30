@@ -30,10 +30,8 @@ class makethread(object):
         self.getInput()
         if self.checkParameter():
             self.createThread()
-            return u'スレッド作成しました。'
-            import time
-            time.sleep(2)
-            web.seeother(u'/')
+            web.seeother(u'/bbs?no={0}'.format(self.getBbsId()))
+            return
         else:
             web.seeother(u'/')
             return

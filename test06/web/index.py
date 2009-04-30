@@ -15,7 +15,12 @@ from view.bbs import bbs
 from view.bbsindex import bbsindex
 from view.threadres import threadres
 from view.makethread import makethread
+from view.makeres import makeres
 
+u'''
+アクセス先パスと、
+対応するクラス名
+'''
 urls = (
     u'/', u'bbsindex',            # BBS一覧
     u'/bbs', u'bbs',              # 特定BBS指定
@@ -23,6 +28,7 @@ urls = (
     u'/res', u'res',              # レス関係
     #u'/rss', u'rss',
     u'/makethread', u'makethread',# スレッド作成
+    u'/makeres', u'makeres',       # レス作成
     u'/.*', u'bbsindex',          # マッチしなかったものはBBS一覧へ
     )
 

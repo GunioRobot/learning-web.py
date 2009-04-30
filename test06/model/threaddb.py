@@ -5,6 +5,10 @@ __version__ = u'200904231811'
 import database
 
 class threaddatabase(database.database):
+    u'''
+    作成されているスレッド全体に関する処理
+    '''
+    
     def takeRecordAll(self):
         u'''
         すべてのレコードを取得
@@ -79,4 +83,18 @@ class threaddatabase(database.database):
         param = {u'bbs_id' : bbs_id}
         result = self.fetchOne(query, param)
         return result[0]
+    
+    def getThreadName(self, thread_id):
+        u'''
+        スレッドIDを元に、スレッド名を求め、返す
+        '''
+        query = u'''
+                SELECT name 
+                   FROM thread
+                   WHERE id = :thread_id
+                   LIMIT 1
+                '''
+        param = {u'thread_id' : thread_id}
+        result = self.fetchOne(query, param)
+        return result
    

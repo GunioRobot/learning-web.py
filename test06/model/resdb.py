@@ -5,6 +5,9 @@ __version__ = u'200904241203'
 import database
 
 class resdatabase(database.database):
+    u'''
+    レス作成に関するクラス
+    '''
     def takeRecordAll(self):
         u'''
         すべてのレコードを取得
@@ -22,22 +25,22 @@ class resdatabase(database.database):
         query = u'''
                 SELECT * FROM res
                   WHERE thread_id = :thread_id
-                  ORDER BY update_time DESC
+                  ORDER BY update_time ASC
                 '''
         param = {u'thread_id' : thread_id}
         result = self.fetchAll(query, param)
         return result
 
     def threadIdAndLimitToTakeRecord(self, thread_id,
-                                     start, length):
+                                         start, length):
         u'''
         スレッドID, LIMITを指定する
         '''
         query = u'''
                 SELECT * FROM res
                   WHERE thread_id = :thread_id
-                  ORDER BY update_time DESC
-                  LIMIT start, length
+                  ORDER BY update_time ASC
+                  LIMIT :start, :length
                 '''
         param = {u'thread_id' : thread_id,
                  u'start' : start,

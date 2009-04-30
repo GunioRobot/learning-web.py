@@ -98,8 +98,13 @@ class threadres(object):
         u'''
         すべてのレスの内容を表示
         '''
+        # スレッド名
+        threadtitle = self.db.getThreadName(self.getThreadId())
+        # レス
         reslist = self.db.threadIdToTakeRecord(self.getThreadId())
-        return self.render.res(reslist)
+        # スレッド作成時アクセス先
+        action = u'/makeres?no={0}'.format(self.getThreadId())
+        return self.render.res(threadtitle, reslist, action)
 
     def returnPieceRes(self):
         u'''
@@ -107,6 +112,7 @@ class threadres(object):
         '''
         reslist = self.db.threadIdAndLimitToTakeRecord(self.getThreadId(), 
                                                   self.start, self.length)
-        return self.render.res(reslist)
+        action = u'/makeres?no={0}'.format(self.getThreadId())
+        return self.render.res(reslist, action)
     
     
