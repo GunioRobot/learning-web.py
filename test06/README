@@ -1,8 +1,0 @@
-ディレクトリは以下
-
-control    modelへの問い合わせ
-model      DB直接いじる
-web        ユーザから叩かれる
-  static   スタティックファイル(jsとか、cssとか)
-datastore  DB保存先
-templates  テンプレート保存先
