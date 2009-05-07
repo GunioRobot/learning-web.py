@@ -1,0 +1,8 @@
+{
+ "filedir":"../upfiles",
+ "tempdir":"../templates",
+ "dbdir":"../db",
+ "dbfile":"files.db",
+ "title":"ファイルアップロードテスト",
+ "realpath":"http://localhost:8080/"
+}

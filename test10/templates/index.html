@@ -1,0 +1,40 @@
+$def with (title, realpath, filedir, uploadform, filelist)
+$# アップローダのテスト。
+$# プレゼン用に軽いのを作成すること
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="applicaiton/xhtml+xml; charset=UTF-8"/>
+    <title>$title</title>
+  </head>
+
+  <body>
+  <div align="center">
+    <h1>$title</h1>
+    <hr>
+    <h1>アップファイル一覧</h1>
+    $if filelist:
+      <table>
+        <tr>
+          <th>No.</th>
+          <th>File</th>
+          <th>Comment</th>
+        </tr>
+        $for i in filelist:
+          <tr>
+            <td align="center">$i[0]</td>
+            <td align="center"><a href="/loading?file=$i[0]">■click■</a>
+            </td>
+            <td align="center">$i[1]</td>
+          </tr>
+      </table>
+    $else:
+      <p>ファイルはひとつもアップされてません。</p>
+  </div>
+  <hr/>
+  <div align="center">
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      $:uploadform
+    </form>
+  </div>
+  </body>
+</html>
