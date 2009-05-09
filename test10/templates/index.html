@@ -1,10 +1,11 @@
-$def with (title, realpath, filedir, uploadform, filelist)
+$def with (title, realpath, filedir, uploadform, filelist, pagesize)
 $# アップローダのテスト。
 $# プレゼン用に軽いのを作成すること
 <html>
   <head>
     <meta http-equiv="Content-Type" content="applicaiton/xhtml+xml; charset=UTF-8"/>
     <title>$title</title>
+    <link rel="stylesheet" href="/static/main.css">
   </head>
 
   <body>
@@ -13,23 +14,33 @@ $# プレゼン用に軽いのを作成すること
     <hr>
     <h1>アップファイル一覧</h1>
     $if filelist:
+     <hr>
+     <div align="center">
+       $for i in range(pagesize):
+       <a href="/?page=${i+1}">${i+1}</a>&nbsp;
+     </div>
+     
       <table>
         <tr>
           <th>No.</th>
-          <th>File</th>
+          <th>Download</th>
+          <th>Size</th>
+          <th>Uptime</th>
           <th>Comment</th>
         </tr>
         $for i in filelist:
           <tr>
-            <td align="center">$i[0]</td>
-            <td align="center"><a href="/loading?file=$i[0]">■click■</a>
-            </td>
-            <td align="center">$i[1]</td>
+            <td align="center">$i[0]</td> $# No
+            <td align="center"><a href="/chkloading?file=$i[1]">■click■</a></td> $# Download
+            <td align="center">$i[2]&nbsp<b>KB</b></td> $# size
+            <td align="center">$i[4]</td> $# time
+            <td align="center">$i[3]</td> $# Comment
           </tr>
       </table>
     $else:
       <p>ファイルはひとつもアップされてません。</p>
   </div>
+
   <hr/>
   <div align="center">
     <form method="POST" action="/upload" enctype="multipart/form-data">

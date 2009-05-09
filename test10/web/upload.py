@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/local/bin/python2.6
 # -*- coding:utf-8 -*-
 
 import web
@@ -8,6 +8,8 @@ urls = (
     u'/', u'index',
     u'/upload', u'upload',
     u'/loading', u'loading',
+    u'/chkloading', u'chkloading',
+    u'/.*', u'index',
     )
 
 def main():

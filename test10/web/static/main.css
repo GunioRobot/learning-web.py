@@ -1,0 +1,30 @@
+a:link {
+  color: #ED0013
+}
+a:visited {
+  color: #9D343D
+}
+a:hover{
+  color: #4E1A1E
+}
+a:active{
+  color: #ED0013
+}
+
+body {
+  background-color: #6FD369;
+  color: #194617;
+}
+
+hr{
+  background-color: #194617;
+  border-style: solid;
+  height: 3px;
+}
+
+table, td, th{
+  border-collapse: collapse;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #539E4F;
+}

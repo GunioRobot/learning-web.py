@@ -3,6 +3,9 @@
  "tempdir":"../templates",
  "dbdir":"../db",
  "dbfile":"files.db",
- "title":"ファイルアップロードテスト",
- "realpath":"http://localhost:8080/"
+ "title":"ファイルアップロードできます",
+ "realpath":"http://localhost:8080/",
+ "maxupsize": 5242880,
+ "pagesize": 10,
+ "commentlength": 32
 }
