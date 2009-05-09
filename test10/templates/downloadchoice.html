@@ -1,0 +1,65 @@
+$def with (filename, expiretime, jumpurl, cookiename)
+$# ダウンロードするか、しないかを選択する。
+$# ダウンロード選択時にダウンロードするようにする
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8">
+    <title>ファイルのダウンロードを行いますか?</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <script type="text/javascript">
+    <!--
+      var globals = {'time': $expiretime}
+      window.onload = function(){
+        timecount();
+        setInterval(timecount, 1000);
+      }
+      function timecount(){
+        // クッキーを確認、なければジャンプしちゃうよ
+        ck = document.cookie;
+        if(!ck.match('$cookiename')){
+            location.href = '/';
+        }
+        document.getElementById('timecount').innerHTML = (
+                                  globals.time + 
+                                  '&nbsp;秒以内にダウンロード開始してください');
+        if (globals.time > 0){
+            globals.time--;
+        }
+        else{
+          clearInterval(timecount);
+          location.href = '/';
+        }
+      }
+    -->
+    </script>
+  </head>
+
+  <body>
+    <div align="center">
+    <h1>以下ファイルのダウンロードを行いますか?</h1>
+    </div>
+    <hr>
+    $# サムネイル表示
+    <div align="center">
+      <img src="static/thumb/th_${filename.split('.')[0] + '.jpg'}" border="0"/>
+    </div>
+    $# ファイル名表示(意味あるのかこれ、容量表示しないとなー)
+    <div align="center">
+      <p>$filename</p>
+    </div>
+    <hr>
+    $# あとどれくらいでダウンロードしないと駄目とか、そういったメッセージを表示する
+    <div align="center">
+      <p id="timecount"></p>
+    </div>
+    <hr>
+    $# ファイルダウンロードY/N
+    <div align="center">
+      <a href="/loading?file=$filename">ダウンロードする</a>
+      &nbsp;
+      |
+      &nbsp;
+      <a href="$jumpurl">ダウンロードしない</a>
+    </div>
+  </body>
+</html>
