@@ -23,6 +23,7 @@ def setup():
               size REAL NOT NULL,
               comment TEXT,
               uploadtime TEXT NOT NULL,
+              delkey TEXT,
               addr TEXT NOT NULL
             );
    

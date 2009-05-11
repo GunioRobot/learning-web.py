@@ -1,0 +1,28 @@
+$def with (title, filename, delform)
+$# ファイルの削除を行う際の確認画面用
+<?xml version="1.0" encoding="UTF-8"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8">
+    <title>$title</title>
+    <link rel="stylesheet" href="static/main.css"/>
+  </head>
+  <body>
+    <div align="center">
+      <h1>$title</h1>
+    </div>
+    <hr>
+    <div align="center">
+      <p>$filename</p>
+      <p>ファイルの削除を行います。削除キーを入力して、削除するを押下してください。</p>
+    </div>
+    <hr>
+    <div align="center">
+      <form method="POST" action="/delfile?file=$filename">
+        $:delform
+      </form>
+    </div>
+  </body>
+</html>

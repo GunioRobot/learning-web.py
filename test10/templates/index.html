@@ -27,6 +27,7 @@ $# プレゼン用に軽いのを作成すること
           <th>Size</th>
           <th>Uptime</th>
           <th>Comment</th>
+          <th>Delete</th>
         </tr>
         $for i in filelist:
           <tr>
@@ -35,6 +36,12 @@ $# プレゼン用に軽いのを作成すること
             <td align="center">$i[2]&nbsp<b>KB</b></td> $# size
             <td align="center">$i[4]</td> $# time
             <td align="center">$i[3]</td> $# Comment
+            <td align="center">
+              $if not i[5]:
+                <b>削除できません</p>
+              $else:
+                <b><a href="/delfile?file=$i[1]"><button>削除</button></b>
+            </td>
           </tr>
       </table>
     $else:

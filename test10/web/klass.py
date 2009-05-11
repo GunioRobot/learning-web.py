@@ -68,11 +68,10 @@ class index(webclass, dbklass):
     def makeUpForm(self):
         uploadfile = web.form.File(u'uploadfile')
         comment = web.form.Textbox(u'comment')
+        delkey = web.form.Textbox(u'delkey')
         button = web.form.Button(u'send',
                                  type=u'submit')
-        return web.form.Form(uploadfile, comment, button).render()
-
-
+        return web.form.Form(uploadfile, comment, delkey, button).render()
 
 class upload(webclass, dbklass):
     u'''
@@ -94,9 +93,15 @@ class upload(webclass, dbklass):
         self.post = web.webapi.input(uploadfile={})
         self.upfile = self.post.get(u'uploadfile')
         self.comment = self.post.get(u'comment')
-
+        self.delkey = self.post.get(u'delkey')
         render = web.template.Render(self.tempdir)
         web.header(u'Content-Type', u'text/html; charset=UTF-8')
+        self.delkey = self.checkDelKey(self.delkey)
+        if self.delkey is False:
+            return render.error(u'不正なエラーが発生しました',
+                     u'削除キーは半角英数字で指定してください',
+                     u'/')
+
         if not self.checkComment():
             return render.error(u'不正なエラーが発生しました',
                                 u'<b>コメントが長過ぎます</b><br/>' +
@@ -135,7 +140,21 @@ class upload(webclass, dbklass):
                                 u'正しいファイルをアップロードしてください。',
                                 u'/')
 
+    def checkDelKey(self, key):
+        u'''
+        削除キーの確認を行う
+        '''
+        if not key or key == '':
+            return None
+        elif not re.match(r'^[a-zA-Z0-9]+$', key):
+            return False
+        else:
+            return unicode(hashlib.sha256(key).hexdigest())
+
     def checkComment(self):
+        u'''
+        コメントの内容をチェックする
+        '''
         if len(self.comment) > self.commentlength:
             return False
         else:
@@ -295,6 +314,67 @@ class loading(webclass, dbklass):
     def POST(self):
         web.seeother(u'/')
 
+class delfile(webclass, dbklass):
+    u'''
+    ファイルの削除を行う
+    '''
+    def GET(self):
+        u'''
+        GET時は、ファイル削除時の画面表示
+        '''
+        self.post = web.webapi.input()
+        self.db = sqlite3.connect(self.dbpath)
+        render = web.template.Render(self.tempdir)
+        if not self.getUploadFileName():
+            return render.error(u'不正なエラーが発生しました',
+                   u'ファイル名がおかしいです',
+                   u'/')
+        return render.delfile(u'指定ファイルの削除',
+                              self.post.get(u'file'),
+                              self.makeDelForm())
+
+    def POST(self):
+        u'''
+        POST時は、ファイル削除を実際に行う
+        (ファイル削除前にてきとーなキーを渡しておく形を取る)
+        '''
+        self.post = web.webapi.input()
+        render = web.template.Render(self.tempdir)
+        self.db = sqlite3.connect(self.dbpath)
+        # ファイル名確認
+        if not self.getUploadFileName():
+            return render.error(u'不正なエラーが発生しました',
+                     u'ファイル名がおかしいです',
+                     u'/')
+        # 削除
+        deleteRecord = self.deleteFileRecord()
+        if not deleteRecord:
+            self.db.rollback()
+            self.db.close()
+            return render.error(u'データベースエラーです',
+                       u'ファイルの削除に失敗しました',
+                       u'/')
+        # 実ファイル削除
+        try:
+            os.unlink(os.path.join(self.filedir, self.post.get(u'file')))
+        except os.error, e:
+            return render.error(u'ファイル削除に失敗しました',
+                       u'実ファイル削除に失敗しました。',
+                       u'/')
+
+        self.db.commit()
+        web.header(u'Content-Type', u'text/html; charset=UTF-8')
+        return render.delfilecomp(u'ファイルの削除を行いました', 
+                                  self.post.get(u'file'))   
+
+    def makeDelForm(self):
+        u'''
+        削除用のフォームを作成する
+        '''
+        delkey = web.form.Textbox(u'delkey')
+        button = web.form.Button(u'send',
+                                 type=u'submit')
+        return web.form.Form(delkey, button).render()
 
 class downsession(object):
     u'''

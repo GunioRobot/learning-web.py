@@ -9,6 +9,7 @@ urls = (
     u'/upload', u'upload',
     u'/loading', u'loading',
     u'/chkloading', u'chkloading',
+    u'/delfile', u'delfile',
     u'/.*', u'index',
     )
 
